@@ -1,7 +1,7 @@
 'use strict';
 let P = require('bluebird');
-let _ = require('underscore');
-let CGModel = P.promisifyAll(require('cg_model'));
+let mysql = require('mysql');
+// let _ = require('underscore');
 let koa = require('koa');
 let router = require('koa-router')();
 let bodyParser = require('koa-body-parser');
@@ -18,8 +18,10 @@ app.set('logger', app.require('lib/model/logger').getLogger());
 let logger = app.get('logger');
 
 app.set('PassportServer', app.require('lib/servers/passportServer'));
+app.set('DBClient', P.promisifyAll(mysql.createPool(app.require('config/mysql.json'))));
 
-app.require('lib/utils/mysqlUtil').init();
+app.require('lib/model/logDB').init();
+app.require('lib/model/statisticDB').init();
 
 app.require('lib/routes')(router);
 
