@@ -20,8 +20,11 @@ let logger = app.get('logger');
 app.set('PassportServer', app.require('lib/servers/passportServer'));
 app.set('DBClient', P.promisifyAll(mysql.createPool(app.require('config/mysql.json'))));
 
-app.require('lib/model/logDB').init();
-app.require('lib/model/statisticDB').init();
+(P.coroutine(function* init() {
+  yield app.require('lib/model/logDB').init();
+  yield app.require('lib/model/statisticDB').init();
+  app.require('lib/model/queue');
+}))();
 
 app.require('lib/routes')(router);
 
