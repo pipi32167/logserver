@@ -25,7 +25,7 @@ let singleTest = function() {
 
 let benchmarkTest = function() {
 
-  let count = 100000;
+  let count = 10000;
   let beginServerId = 1001;
   let endServerId = 1100;
   let beginTime = new Date('2015-01-01').getTime();
@@ -51,7 +51,6 @@ queue.connect(function() {
   // singleTest();
   benchmarkTest();
 })
-
 
 process.on('SIGINT', function() {
 
