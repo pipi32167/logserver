@@ -1,0 +1,8 @@
+{
+  "debug": 0,
+  "info": 0,
+  "warn": true,
+  "error": true,
+  "fatal": true,
+  "reloadSeconds": 5
+}

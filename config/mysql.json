@@ -1,0 +1,11 @@
+{
+  "DB_NAME_TEMPLATE": "dnc_log_%s",
+  "DB_NAME_LIKE": "dnc_log_%",
+  "host": "192.168.1.137",
+  "_host": "192.168.199.115",
+  "port": "3306",
+  "multipleStatements": true,
+  "connectionLimit": 10,
+  "user": "yqb",
+  "password": "yqb"
+}
