@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+'use strict';
+require('cliff');
+var path = require('path');
+var program = require('commander');
+var configPlugin = require('commander-config-switcher-plugin');
+var version = require('../package.json').version;
+
+var CUR_DIR = path.join(__dirname, '../');
+
+program.version(version);
+
+configPlugin(program, {
+  dir: CUR_DIR,
+});
+
+program.parse(process.argv);
