@@ -1,7 +1,7 @@
 'use strict';
 let _ = require('underscore');
 var NR = require('node-resque');
-var redisConfig = require('../config/redis.json');
+var redisConfig = require('../config/redis.json').log_queue;
 
 //测试用例
 var queue = new NR.queue({
@@ -25,9 +25,9 @@ let singleTest = function() {
 
 let benchmarkTest = function() {
 
-  let count = 10000;
+  let count = 5000;
   let beginServerId = 1001;
-  let endServerId = 1100;
+  let endServerId = 1001;
   let beginTime = new Date('2015-01-01').getTime();
   let endTime = new Date('2015-01-02').getTime();
 
