@@ -1,0 +1,12 @@
+{
+  "debug": 0,
+  "info": true,
+  "warn": true,
+  "error": true,
+  "fatal": true,
+  "reloadSeconds": 5,
+  "mysql": {
+    "request": true,
+    "response": false
+  }
+}
