@@ -47,9 +47,48 @@ let benchmarkTest = function() {
 
 }
 
+let onlineCountTest = function() {
+
+  let count = 1000;
+  let beginServerId = 1003;
+  let endServerId = 1003;
+  let beginTime = new Date('2016-02-01').getTime();
+  let endTime = new Date('2016-03-01').getTime();
+  let onlineCount = 1000;
+
+  // _.range(0, count).map(function() {
+
+  //   let args = {
+  //     serverId: _.random(beginServerId, endServerId),
+  //     type: 'ONLINE',
+  //     time: new Date(_.random(beginTime, endTime)),
+  //     onlineCount: _.random(onlineCount),
+  //   }
+  //   console.log(args);
+  //   queue.enqueue('log', 'import', args);
+  // })
+
+  let beforeCount = _.random(onlineCount);
+
+  for (let i = beginTime; i < endTime; i += 600 * 1000) {
+
+    beforeCount = beforeCount + _.random(-10, 10);
+
+    let args = {
+      serverId: _.random(beginServerId, endServerId),
+      type: 'ONLINE',
+      time: new Date(i),
+      onlineCount: beforeCount,
+    }
+    // console.log(args);
+    queue.enqueue('log', 'import', args);
+  }
+}
+
 queue.connect(function() {
   // singleTest();
-  benchmarkTest();
+  // benchmarkTest();
+  onlineCountTest();
 })
 
 process.on('SIGINT', function() {
