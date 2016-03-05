@@ -13,14 +13,27 @@ let singleTest = function() {
   // var date = new Date();
   var date1 = new Date('2015/5/6');
   // var date2 = new Date('2015/5/12');
+  // queue.enqueue('log', 'import', [{
+  //   userId: 1000001,
+  //   uid: '1000001',
+  //   serverId: 1001,
+  //   platform: 'QFUN',
+  //   type: 'LOGIN',
+  //   time: date1,
+  // }]);
+
   queue.enqueue('log', 'import', [{
-    userId: 1000001,
-    uid: '1000001',
-    serverId: 1001,
-    platform: 'QFUN',
-    type: 'LOGIN',
-    time: date1,
-  }]);
+    "userId": 1000001,
+    "serverId": 1001,
+    "platform": "TENCENT",
+    "uid": "5AA9189A5C26C764B9AFD17CF9C69D2D",
+    "price": 1,
+    "diamond": 1,
+    "beforePayTimes": 2,
+    "registerTime": "2016-03-04T12:47:05.000Z",
+    "type": "IAP",
+    "time": "2016-03-04T13:12:32.349Z"
+  }])
 }
 
 let benchmarkTest = function() {
@@ -75,20 +88,20 @@ let onlineCountTest = function() {
     beforeCount = beforeCount + _.random(-10, 10);
 
     let args = {
-      serverId: _.random(beginServerId, endServerId),
-      type: 'ONLINE',
-      time: new Date(i),
-      onlineCount: beforeCount,
-    }
-    // console.log(args);
+        serverId: _.random(beginServerId, endServerId),
+        type: 'ONLINE',
+        time: new Date(i),
+        onlineCount: beforeCount,
+      }
+      // console.log(args);
     queue.enqueue('log', 'import', args);
   }
 }
 
 queue.connect(function() {
-  // singleTest();
+  singleTest();
   // benchmarkTest();
-  onlineCountTest();
+  // onlineCountTest();
 })
 
 process.on('SIGINT', function() {
