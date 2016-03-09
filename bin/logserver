@@ -2,12 +2,13 @@
 
 'use strict';
 require('cliff');
-var path = require('path');
-var program = require('commander');
-var configPlugin = require('commander-config-switcher-plugin');
-var version = require('../package.json').version;
+let path = require('path');
+let program = require('commander');
+let configPlugin = require('commander-config-switcher-plugin');
+let execSync = require('child_process').execSync;
+let version = require('../package.json').version;
 
-var CUR_DIR = path.join(__dirname, '../');
+let CUR_DIR = path.join(__dirname, '../');
 
 program.version(version);
 
@@ -15,4 +16,18 @@ configPlugin(program, {
   dir: CUR_DIR,
 });
 
+program.command('clear')
+  .description('clear log datas')
+  .action(clear);
+
 program.parse(process.argv);
+
+function clear(opts) {
+
+  let config = require(path.join(CUR_DIR, 'config/servers.json')).logReader;
+
+  let cmd = `curl http://${config.host}:${config.port}/removeAllDBs -X POST && sleep 3 && pm2 stop pm2.json`;
+  console.log(`exec: ${cmd}`);
+  let res = execSync(cmd);
+  console.log(res.toString());
+}
