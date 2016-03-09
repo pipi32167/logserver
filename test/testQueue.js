@@ -98,10 +98,43 @@ let onlineCountTest = function() {
   }
 }
 
+let longTimeTest = function() {
+
+  let count = 885;
+  let userId = 1000001
+  let serverId = 1001;
+
+  setInterval(function() {
+
+    count++;
+
+    queue.enqueue('log', 'import', [{
+      "userId": userId + count,
+      "serverId": 1001,
+      "platform": "TENCENT",
+      "uid": "5AA9189A5C26C764B9AFD17CF9C69D2D",
+      "type": "REGISTER",
+      "time": new Date(),
+    }]);
+
+    queue.enqueue('log', 'import', [{
+      "userId": userId + count,
+      "serverId": 1001,
+      "platform": "TENCENT",
+      "uid": "5AA9189A5C26C764B9AFD17CF9C69D2D",
+      "type": "LOGIN",
+      "time": new Date(),
+    }]);
+
+    console.log('count', count);
+  }, 10);
+}
+
 queue.connect(function() {
-  singleTest();
+  // singleTest();
   // benchmarkTest();
   // onlineCountTest();
+  longTimeTest();
 })
 
 process.on('SIGINT', function() {

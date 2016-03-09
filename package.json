@@ -14,7 +14,7 @@
     "commander": "^2.9.0",
     "commander-config-switcher-plugin": "0.0.2",
     "date-utils": "^1.2.18",
-    "fast-bitset": "^1.3.1",
+    "qf-fast-bitset": "^1.3.1",
     "koa": "^1.1.2",
     "koa-body-parser": "^1.1.2",
     "koa-router": "^5.3.0",

@@ -1,15 +1,18 @@
 'use strict';
+let BitSet = require('fast-bitset');
+let bs = new BitSet('2147483646,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,2147483647,0,9999999');
+console.log(bs.getCardinality());
 
-let P = require('bluebird');
+let res = bs.get(899);
 
-P.map([1, 2, 3, 4, 5], function(elem) {
-    return P.delay(elem).then(function() {
-      return elem;
-    })
-  })
-  .reduce(function(total, elem) {
-    return total + elem;
-  }, 0)
-  .then(function(res) {
-    console.log(res);
-  })
+console.log(res);
+
+res = bs.set(899, true);
+
+console.log(res);
+
+res = bs.get(899);
+
+console.log(res);
+
+console.log(bs.getCardinality());
